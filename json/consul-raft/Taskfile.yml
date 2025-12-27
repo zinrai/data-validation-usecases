@@ -1,0 +1,40 @@
+version: '3'
+
+vars:
+  CONSUL_ADDR: 127.0.0.1:8500
+  OUTPUT_DIR: ./output
+  OUTPUT_FILE: raft-configuration.json
+
+tasks:
+  fetch:
+    desc: Fetch Consul Raft configuration
+    cmds:
+      - mkdir -p {{.OUTPUT_DIR}}
+      - curl -s {{.CONSUL_ADDR}}/v1/operator/raft/configuration | jq '.' > {{.OUTPUT_DIR}}/{{.OUTPUT_FILE}}
+      - echo "Saved to {{.OUTPUT_DIR}}/{{.OUTPUT_FILE}}"
+    preconditions:
+      - sh: command -v curl
+        msg: "curl is not installed"
+      - sh: command -v jq
+        msg: "jq is not installed"
+
+  validate:
+    desc: Validate the fetched Raft configuration
+    deps: [fetch]
+    cmds:
+      - cue vet -d '#Config' schema.cue {{.OUTPUT_DIR}}/{{.OUTPUT_FILE}}
+      - echo "Validation passed"
+    preconditions:
+      - sh: command -v cue
+        msg: "cue is not installed. See https://cuelang.org/docs/introduction/installation/"
+
+  clean:
+    desc: Remove generated output files
+    cmds:
+      - rm -rf {{.OUTPUT_DIR}}
+      - echo "Cleaned {{.OUTPUT_DIR}}"
+
+  default:
+    desc: Fetch and validate Raft configuration
+    cmds:
+      - task: validate

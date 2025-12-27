@@ -1,0 +1,50 @@
+{
+  "Servers": [
+    {
+      "ID": "815a2779-fd71-db45-93dd-9e49657b08b1",
+      "Node": "consul-server-3",
+      "Address": "172.20.0.2:8300",
+      "Leader": true,
+      "ProtocolVersion": "3",
+      "Voter": true,
+      "LastIndex": 1212
+    },
+    {
+      "ID": "bd796a05-d68b-54b0-0dc0-3a0d8f7fb681",
+      "Node": "consul-server-5",
+      "Address": "172.20.0.4:8300",
+      "Leader": false,
+      "ProtocolVersion": "3",
+      "Voter": true,
+      "LastIndex": 1212
+    },
+    {
+      "ID": "f70b8944-6cec-303b-a846-fa428dbb74fd",
+      "Node": "consul-server-2",
+      "Address": "172.20.0.3:8300",
+      "Leader": false,
+      "ProtocolVersion": "3",
+      "Voter": true,
+      "LastIndex": 1212
+    },
+    {
+      "ID": "8b3f9b13-598a-135b-42a5-9a18a4d45fb0",
+      "Node": "consul-server-4",
+      "Address": "172.20.0.5:8300",
+      "Leader": false,
+      "ProtocolVersion": "3",
+      "Voter": true,
+      "LastIndex": 1212
+    },
+    {
+      "ID": "d5f6245e-bd16-3191-32d6-023dbc117495",
+      "Node": "consul-server-1",
+      "Address": "172.20.0.6:8300",
+      "Leader": false,
+      "ProtocolVersion": "3",
+      "Voter": true,
+      "LastIndex": 1212
+    }
+  ],
+  "Index": 0
+}
